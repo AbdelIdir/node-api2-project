@@ -18,3 +18,15 @@ router.get("/", (req, res) => {
 });
 
 module.exports = router;
+
+router.get("/:id", (req, res) => {
+  Posts.findById(req.params.id)
+    .then(posts => {
+      res.status(200).json(posts);
+    })
+    .catch(error => {
+      res.status(500).json({
+        message: " Cannot find any post with this id"
+      });
+    });
+});
